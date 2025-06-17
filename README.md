@@ -1,8 +1,10 @@
  # Immunization FHIR® Connectathon – June 2025, Tagaytay City, Philippines
 
-<!--![Connectathon_Graphic] (https://github.com/user-attachments/assets/1d6afce8-7200-45c0-a7ac-02913a0e1ba0)-->
+![alt text](<Immunization Connectathon Graphic.png>)
 
-The 2025 Immunization FHIR® Connectathon is hosted and co-organized by the Standards and Interoperability Laboratory (UPM SILab), under the University of the Philippines Manila National Institutes of Health’s National Telehealth Center together with the Department of Health (DOH), with technical assistance from the United Nations Children's Fund (UNICEF) and support from the Australian Government Department of Foreign Affairs and Trade (DFAT). The Connectathon is part of UP Manila's Long Term Agreement with UNICEF with the first engagement about Interoperability Development and Implementation: Implementing a standards-based immunization Implementation Guide through the use of international terminology and data exchange standards.
+The 2025 Immunization FHIR® Connectathon is hosted and co-organized by the Standards and Interoperability Laboratory (UPM SILab), under the University of the Philippines Manila National Institutes of Health’s National Telehealth Center (NTHC) together with the Department of Health (DOH) and United Nations Children's Fund (UNICEF). This program is supported by the Australian Government Department of Foreign Affairs and Trade (DFAT) with technical assistance from the Commonwealth Scientific and Industrial Research Organisation (CSIRO). 
+
+The Immunization Connectathon is part of UP Manila's Long-Term Agreement with UNICEF with its first engagement focusing on Interoperability Development and Implementation: Implementing a standards-based immunization Implementation Guide through the use of international terminology and data exchange standards.
 
 The project's objectives are as follows:
 - Develop the necessary interoperability resources to ensure linkage of SEIR with other systems. **(FHIR® Immunization Implementation Guide)**
@@ -20,7 +22,7 @@ The project's objectives are as follows:
 |-----------------|-----------------|
 | Data Exchange      | Successfully exchange immunization records using FHIR Immunization resource with at least two other participants (to SEIR and from another participant) |
 | Terminology Mapping  | Validate use of existing codes across the test scenarios |
-| Profile Conformance  | Validate conformance to the Immunization Implementation Guide with the <ins>**draft**</ins> PH Core as reference |
+| Profile Conformance  | Validate conformance to the draft Immunization Implementation Guide with the draft PH Core IG as reference |
 | Client-Server Interactions  | Demonstrate read, search, and update interactions between client apps and FHIR servers|
 | Record Validation  | Cross-check vaccination records for completeness based on the Immunization Minimum Data Set |
 | Feedback and Reporting  | Submit structured feedback on gaps in profile conformance, terminology, or server responses |
@@ -34,12 +36,12 @@ The project's objectives are as follows:
 | 3. Users will submit BULK data. **(POST)** | 7. Users will submit BULK data. **(POST)** |
 | 4. Users will retrieve vaccine record. **(GET)**  | 8. Users will retrieve vaccine record. **(GET)** |
 
-## Use Cases and Sample Data
+## Tracks and Sample Data
 
-- [Use Case #1 and #5](use-case-%231-%235)
-- [Use Case #2, #3, #6, and #7](use-case-%232-%233-%236-%237)
-- [Use Case #4 and #8](use-case-%234-%238)
-- [Postman Collections and Data]
+- [Tracks #1 and #5](tracks-%231-%235)
+- [Tracks #2, #3, #6, and #7](tracks-%232-%233-%236-%237)
+- [Tracks #4 and #8](tracks-%234-%238)
+- [Postman Collection and Environment](postman-collection)
 
 
 ---
