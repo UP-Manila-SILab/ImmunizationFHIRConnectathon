@@ -1,0 +1,244 @@
+{
+    "resourceType": "Bundle",
+    "type": "batch",
+    "entry": [
+        {
+            "resource": {
+                "resourceType": "Bundle", // Static
+                "type": "transaction", // Static
+                "entry": [
+                    {
+                        "fullUrl": "urn:uuid:patient-001", // Used for linking in references
+                        "resource": {
+                            "resourceType": "Patient", // Static
+                            "meta": {
+                                "profile": [
+                                    "urn://example.com/ph-core/fhir/StructureDefinition/ph-core-patient"
+                                ]
+                            },
+                            "identifier": [
+                                {
+                                    "system": "http://hospital.example.org", // Static
+                                    "type": {
+                                        "text": "PhilSysId" // Changeable string; must match identifier_types
+                                    },
+                                    "value": "1234567890" // Changeable string
+                                }
+                            ],
+                            "name": [
+                                {
+                                    "family": "Ramirez", // Changeable lastname
+                                    "given": [
+                                        "Sham" // Changeable firstname
+                                        // Changeable middlename
+                                    ],
+                                    "suffix": [
+                                        // Changeable suffix
+                                    ]
+                                }
+                            ],
+                            "birthDate": "2024-11-05", // Changeable
+                            "gender": "male", // Changeable: male | female
+                            "extension": [
+                                {
+                                    "url": "http://example.org/fhir/StructureDefinition/indigenous", // Static
+                                    "valueBoolean": true // Changeable
+                                }
+                            ]
+                        },
+                        "request": {
+                            "method": "POST", // Static
+                            "url": "Patient" // Static
+                        }
+                    },
+                    {
+                        "fullUrl": "urn:uuid:encounter-001",
+                        "resource": {
+                            "resourceType": "Encounter",
+                            "subject": {
+                                "reference": "urn:uuid:patient-001" // Validation must same to the immunization patience ref
+                            },
+                            "meta": {
+                                "profile": [
+                                    "urn://example.com/ph-core/fhir/StructureDefinition/ph-core-encounter"
+                                ]
+                            },
+                            "type": [
+                                {
+                                    "coding": [
+                                        {
+                                            "system": "http://example.org/immunization-type", // Static
+                                            "code": "CAMPAIGN" // Immunization Type Campaign or Routine
+                                        }
+                                    ]
+                                }
+                            ],
+                            "serviceType": [
+                                {
+                                    "coding": [
+                                        {
+                                            "system": "http://example.org/action-reasons-id", // Static
+                                            "code": 57, // Will accept only 57
+                                            "display": "immunization" // Accept only "immunization" always lowercase
+                                        }
+                                    ]
+                                }
+                            ],
+                            "status": "finished",
+                            "class": {
+                                "system": "http://example.org/action-reasons-id", // Static
+                                "code": "amb" // Accept only "amb" always lowercase
+                            }
+                        },
+                        "request": {
+                            "method": "POST", // Static
+                            "url": "Encounter" // Static
+                        }
+                    },
+                    {
+                        "fullUrl": "urn:uuid:Immunization-001",
+                        "resource": {
+                            "resourceType": "Immunization", // Static
+                            "patient": {
+                                "reference": "urn:uuid:patient-001" // Must match Patient fullUrl
+                            },
+                            "meta": {
+                                "profile": [
+                                    "urn://example.com.ph/StructureDefinition/ph-immunization"
+                                ]
+                            },
+                            "encounter": {
+                                "reference": "urn:uuid:encounter-001" // Must match Encounter fullUrl
+                            },
+                            "vaccineCode": {
+                                "coding": [
+                                    {
+                                        "system": "http://hl7.org/vaccination-brand", // Static
+                                        "code": "generic-hep-b" // Must match vaccine_brand_name change base on db
+                                    },
+                                    {
+                                        "system": "http://hl7.org/vaccination-generic-name", // Static
+                                        "code": "SEIR-GenericName-00001" // Must match vaccine_generic_name change base on db
+                                    }
+                                ]
+                            },
+                            "occurrenceDateTime": "2025-05-01T09:45:00", // Changeable, format: YYYY-MM-DD
+                            // "statusReason": [
+                            //     {
+                            //         "coding": [
+                            //             {
+                            //                 "system": "http://example.org/action-reasons-id", // Static
+                            //                 "code": "R01" // Must match action_reasons
+                            //             }
+                            //         ]
+                            //     }
+                            // ],
+                            "lotNumber": "LOT123456", // Changeable
+                            "performer": [
+                                {
+                                    "actor": {
+                                        "display": "Dr. Jane Smith" // Changeable
+                                    }
+                                },
+                                {
+                                    "actor": {
+                                        "reference": "Organization/DOH000000000000001", // Must match existing facility code
+                                        "display": " "
+                                    }
+                                }
+                            ],
+                            "protocolApplied": [
+                                {
+                                    "doseNumberPositiveInt": "11"
+                                }
+                            ],
+                            "extension": [
+                                {
+                                    "url": "http://example.org/fhir/StructureDefinition/batch-lot", // Static
+                                    "valueString": "BATCH7890" // Changeable
+                                },
+                                {
+                                    "url": "http://example.org/fhir/StructureDefinition/action-code", // Static
+                                    "valueString": "VACCINATE" // Changeable (must match immunization status or action code)
+                                },
+                                // {
+                                //     "url": "http://example.org/fhir/StructureDefinition/deferred-next-visit-date", // Static
+                                //     "valueString": "2025-06-20" // Changeable, format: YYYY-MM-DD
+                                // },
+                                {
+                                    "url": "http://hl7.org/fhir/StructureDefinition/ph-barangay",
+                                    "valueCodeableConcept": {
+                                        "coding": [
+                                            {
+                                                "system": "http://example.org/barangay-codes",
+                                                "code": "0401005001"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "url": "http://hl7.org/fhir/StructureDefinition/ph-street-address",
+                                    "valueString": "Sampaloc"
+                                }
+                            ]
+                        },
+                        "request": {
+                            "method": "POST", // Static
+                            "url": "Immunization" // Static
+                        }
+                    },
+                    {
+                        "fullUrl": "urn:uuid:rp-001", // Static
+                        "resource": {
+                            "resourceType": "RelatedPerson", // Static
+                            "meta": {
+                                "profile": [
+                                    "urn://example.com/seirfhirig/fhir/StructureDefinition/seir-relatedperson-profile"
+                                ]
+                            },
+                            "identifier": [
+                                {
+                                    "system": "http://hospital.example.org/relatedperson", // Static
+                                    "type": {
+                                        "text": "PhilSysId" // Changeable
+                                    },
+                                    "value": "13222-4222-444" // Changeable
+                                }
+                            ],
+                            "patient": {
+                                "reference": "urn:uuid:patient-001" // Must match Patient fullUrl
+                            },
+                            "relationship": [
+                                {
+                                    "coding": [
+                                        {
+                                            "system": "http://terminology.hl7.org/CodeSystem/v2-0131", // Static
+                                            "code": "mother" // Accept only mother
+                                        }
+                                    ]
+                                }
+                            ],
+                            "name": [
+                                {
+                                    "family": "Park", // Changeable
+                                    "given": [
+                                        "Pedro", // Changeable
+                                        "M name" // Changeable
+                                    ]
+                                }
+                            ]
+                        },
+                        "request": {
+                            "method": "POST", // Static
+                            "url": "RelatedPerson" // Static
+                        }
+                    }
+                ]
+            },
+            "request": {
+                "method": "POST",
+                "url": "Bundle"
+            }
+        }
+    ]
+}
