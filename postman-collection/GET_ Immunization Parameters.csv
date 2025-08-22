@@ -1,0 +1,4 @@
+Name,Type,Description,FHIR Expression
+vaccine-code:generic,string,"Generic vaccine name (e.g., COVID19)",Immunization.vaccineCode.coding.where(system='http://hl7.org/vaccination-generic-name').code
+vaccine-code:brand,string,"Brand of vaccine (e.g., Pfizer)",Immunization.vaccineCode.coding.where(system='http://hl7.org/vaccination-brand').code
+patient,UUID,Patient UUID,Immunization.patient.reference
